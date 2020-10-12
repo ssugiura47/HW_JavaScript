@@ -20,37 +20,64 @@ tableData.forEach(function(ufo_data){
 var button = d3.select("#filter-btn");
 var form = d3.select('#form');
 
-function buttonClicked(){
+function filterData(users, filter){
     d3.event.preventDefault();
-    // Select the input element and get the raw HTML node
-    var inputElement = d3.select('#datetime');
-
-    // Get the value property of the input element
-    var inputValue = inputElement.property("value");
-
-    // Print the value to the console
-    console.log(inputValue);
+ 
+    var inputDate = d3.select('#datetime').property("value")
+    var inputCity = d3.select('#filter_city').property("value")
+    var inputState = d3.select('#filter_state').property("value")
+    var inputCountry = d3.select('#filter_country').property("value")
+    var inputShape = d3.select('#filter_shape').property("value")
     
-    var tableDataFiltered = tableData.filter(ufo => ufo.datetime === inputValue);
-    console.log(tableDataFiltered);
+    console.log(inputDate)
+    console.log(inputCity)
+    console.log(inputState)
+    console.log(inputCountry)
+    console.log(inputShape)
 
-    tbody.html("")
+    // function checkFilter(ufo){
+    //     if (inputDate != null && inputDate == ufo.datetime){
+    //         if (inputCity != "" && (inputCity).toLowerCase() == ufo.city){
+    //             if (inputState != "" && (inputState).toLowerCase() == ufo.state){
+    //                 console.log(ufo)
+    //                 if (inputCountry != "" && (inputCountry).toLowerCase() == ufo.country){
+    //                     if (inputShape != "" && (inputShape).toLowerCase() == ufo.shape){
+    //                         return ufo
+    //                     };
+    //                 };
+    //             };
+    //         };
+    //     ;}
+    // };
+    
+    possibleUFO = []
 
-    tableDataFiltered.forEach(function(ufo_data){
-        var addRow = tbody.append('tr')
-        Object.entries(ufo_data).forEach(function([x,y]){
-            addRow.append('td').text(y);
-        })
-    });
-    // var DataFiltered = tableData.filter(ufo => ufo.datetime != inputValue); 
-    // console.log(DataFiltered);
+    function checkFilter(ufo){
+        if ((inputDate != null && inputDate == ufo.datetime) ||
+            (inputCity != "" && (inputCity).toLowerCase() == ufo.city) ||
+            (inputState != "" && (inputState).toLowerCase() == ufo.state) ||
+            (inputCountry != "" && (inputCountry).toLowerCase() == ufo.country) ||
+            (inputShape != "" && (inputShape).toLowerCase() == ufo.shape)){
+        
+            possibleUFO.push(ufo)}
+        };
+    
+    console.log(possibleUFO)
 
-    // return DataFiltered.forEach(function(ufo_data){
-    //     delete ufo_data
-    // });
+    // var DataFiltered = tableData.filter(ufo =>
+    //     )
 
+    // console.log(DataFiltered)
+
+//     tbody.html("")
+
+//     DataFiltered.forEach(function(ufo_data){
+//         var addRow = tbody.append('tr')
+//         Object.entries(ufo_data).forEach(function([x,y]){
+//             addRow.append('td').text(y);
+//         })
+//     });
 };
 
 
-button.on('click', buttonClicked)
-
+button.on('click', filterData)
