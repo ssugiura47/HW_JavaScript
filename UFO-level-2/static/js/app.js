@@ -35,48 +35,27 @@ function filterData(users, filter){
     console.log(inputCountry)
     console.log(inputShape)
 
-    // function checkFilter(ufo){
-    //     if (inputDate != null && inputDate == ufo.datetime){
-    //         if (inputCity != "" && (inputCity).toLowerCase() == ufo.city){
-    //             if (inputState != "" && (inputState).toLowerCase() == ufo.state){
-    //                 console.log(ufo)
-    //                 if (inputCountry != "" && (inputCountry).toLowerCase() == ufo.country){
-    //                     if (inputShape != "" && (inputShape).toLowerCase() == ufo.shape){
-    //                         return ufo
-    //                     };
-    //                 };
-    //             };
-    //         };
-    //     ;}
-    // };
-    
-    possibleUFO = []
+    if (inputDate != null){
+        var tableFilterDate = tableData.filter(ufo => ufo.datetime === inputDate.toLowerCase())};
+    if (inputCity != ""){
+        var tableFilterDate = tableData.filter(ufo => ufo.city === inputCity.toLowerCase())};
+    if (inputState != ""){
+        var tableFilterDate = tableData.filter(ufo => ufo.state === inputState.toLowerCase())};
+    if (inputCountry != ""){    
+        var tableFilterDate = tableData.filter(ufo => ufo.country === inputCountry.toLowerCase())};
+    if (inputShape != ""){
+        var tableFilterDate = tableData.filter(ufo => ufo.country === inputShape.toLowerCase())};    
 
-    function checkFilter(ufo){
-        if ((inputDate != null && inputDate == ufo.datetime) ||
-            (inputCity != "" && (inputCity).toLowerCase() == ufo.city) ||
-            (inputState != "" && (inputState).toLowerCase() == ufo.state) ||
-            (inputCountry != "" && (inputCountry).toLowerCase() == ufo.country) ||
-            (inputShape != "" && (inputShape).toLowerCase() == ufo.shape)){
-        
-            possibleUFO.push(ufo)}
-        };
-    
-    console.log(possibleUFO)
+    console.log(tableFilterDate)
 
-    // var DataFiltered = tableData.filter(ufo =>
-    //     )
+    tbody.html("")
+    tableFilterDate.forEach(function(ufo_data){
+        var addRow = tbody.append('tr')
+        Object.entries(ufo_data).forEach(function([x,y]){
+            addRow.append('td').text(y);
+        })
+    });
 
-    // console.log(DataFiltered)
-
-//     tbody.html("")
-
-//     DataFiltered.forEach(function(ufo_data){
-//         var addRow = tbody.append('tr')
-//         Object.entries(ufo_data).forEach(function([x,y]){
-//             addRow.append('td').text(y);
-//         })
-//     });
 };
 
 
